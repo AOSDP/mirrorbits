@@ -31,6 +31,8 @@ vendor:
 
 protoc:
 	go get -u github.com/golang/protobuf/protoc-gen-go
+	git -C ${GOPATH}/src/github.com/golang/protobuf checkout v1.2.0
+	go install github.com/golang/protobuf/protoc-gen-go
 	protoc -I rpc rpc/rpc.proto --go_out=plugins=grpc:rpc
 
 build: vendor protoc
